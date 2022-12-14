@@ -1,6 +1,6 @@
 FROM python:3.6-alpine
 MAINTAINER GHARBI Rima
-RUN addgroup -S rima -g 433 && adduser -u 431 -S -G rima -s |sbin|nologin rima
+RUN addgroup -S rima -g 433 && adduser -u 431 -S -G rima -s /sbin/nologin rima
 ENV ODOO_URL https://www.odoo.com
 ENV PGADMIN_URL https://www.pgadmin.org
 WORKDIR /opt
