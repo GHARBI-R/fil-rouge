@@ -1,0 +1,48 @@
+version: '3.3'
+services:
+  icwebapp:
+    image: gharbirima/icwebapp:v1
+    container_name: icwebapp
+    ports:
+      - "8080:8080"
+    environment:
+      - "ODOO_URL= http://localhost:8069"
+      - "PGADMIN_URL= http://localhost:5050"
+    networks:
+      - ic-network
+
+  odoo:
+    image: odoo:13.0
+    ports:
+      - "8069:8069"
+    volumes:
+      - ./config:/etc/odoo
+      - ./addons:/mnt/extra-addons
+    environment:
+      - HOST=0.0.0.0
+      - DB_HOST=db
+      - DB_USER=odoo
+      - DB_PASSWORD=odoo
+    networks:
+      - ic-network
+  db:
+    image: postgres:10.0
+    ports:
+      - "5432:5432"
+    environment:
+      - POSTGRES_USER=odoo
+      - POSTGRES_PASSWORD=odoo
+    networks:
+      - ic-network
+
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "5050:80"
+    environment:
+      - PGADMIN_DEFAULT_EMAIL=gr.gharbi.rima@gmail.com
+      - PGADMIN_DEFAULT_PASSWORD=rima    
+    networks:
+      - ic-network
+networks:
+  ic-network:
