@@ -59,5 +59,4 @@ volumes:
     pgadmin_data:
 networks:
     ic_network:
-      driver: bridge
-      name: ic_network
+
