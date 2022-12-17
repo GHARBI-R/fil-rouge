@@ -1,10 +1,27 @@
 version: '3.3'
 services:
+    postgres:
+        environment:
+            - POSTGRES_USER=odoo_user
+            - POSTGRES_PASSWORD=odoo_password
+            - POSTGRES_DB=postgres
+        networks:
+            - ic_network
+        restart: always    
+        volumes:
+            - 'pgdata:/var/lib/postgresql/data'
+        container_name: postgres
+        image: 'postgres:10'
+        ports:
+            - '5432:5432'
     pgadmin:
+        depends_on:
+            - postgres
         container_name: pgadmin
         image: dpage/pgadmin4
         networks:
             - ic_network
+        restart: always
         environment:
             - 'PGADMIN_DEFAULT_EMAIL=gr.gharbi.rima@gmail.com'
             - 'PGADMIN_DEFAULT_PASSWORD=odoo_rima'
