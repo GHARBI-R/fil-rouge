@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dep-odoo
+    env: dev
+  name: dep-odoo
+  namespace: icgroup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dep-odoo
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dep-odoo
+    spec:
+      containers:
+      - image: odoo:13.0
+        name: odoo
+        env:
+        - name: USER
+          value: odoo_user
+        - name: PASSWORD
+          value: odoo_password
+        - name: HOST
+          value: postgres
+        ports:
+        - containerPort: 8069
+        resources: {}
+status: {}
