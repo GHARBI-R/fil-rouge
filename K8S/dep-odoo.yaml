@@ -31,5 +31,16 @@ spec:
           value: postgres
         ports:
         - containerPort: 8069
+        volumesMonts:
+        - name: persistence-volume
+          mountPath: /etc/odoo
+        - name: lib-persistence-volume
+          mountPath: /var/lib/odoo
+        - name: extra-addons-persistence-volume
+          mountPath: /mnt/extra-addons
+      volumes:
+      - name:
+        hostPath:
+          path:      
         resources: {}
 status: {}
