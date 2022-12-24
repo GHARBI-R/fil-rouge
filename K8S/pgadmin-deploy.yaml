@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: pgadmin
+    env: dev
+  name: pgadmin
+  namespace: icgroup
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: pgadmin
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: pgadmin
+    spec:
+      containers:
+      - image: dpage/pgadmin4
+        name: pgadmin4
+        volumeMounts:
+        - name: pg-data
+          mountPath: /var/lib/pgadmin
+        - name: pg-server
+          mountPath: /pgadmin4/servers.json
+          subPath: servers.json
+      volumes:
+      - name: pg-data
+        persistentVolumeClaim:
+          claimName: pg-pvc
+      - name: pg-server
+        configMap:
+          name: pg-config
+          items:
+          - key: servers.json
+            path: servers.json
+

@@ -7,7 +7,6 @@ services:
             - POSTGRES_DB=postgres
         networks:
             - ic_network
-        restart: always    
         volumes:
             - 'pgdata:/var/lib/postgresql/data'
         container_name: postgres
@@ -19,7 +18,6 @@ services:
         image: dpage/pgadmin4
         networks:
             - ic_network
-        restart: always
         environment:
             - PGADMIN_DEFAULT_EMAIL=gr.gharbi.rima@gmail.com
             - PGADMIN_DEFAULT_PASSWORD=odoo_rima
