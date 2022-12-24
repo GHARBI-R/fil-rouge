@@ -22,6 +22,12 @@ spec:
       containers:
       - image: dpage/pgadmin4
         name: pgadmin4
+        env: 
+        - name: PGADMIN_DEFAULT_EMAIL
+          value: gr.gharbi.rima@gmail.com
+        - name: PGADMIN_DEFAULT_PASSWORD
+          value: odoo_rima
+      
         volumeMounts:
         - name: pg-data
           mountPath: /var/lib/pgadmin
