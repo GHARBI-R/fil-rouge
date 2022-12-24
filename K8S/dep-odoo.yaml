@@ -39,8 +39,12 @@ spec:
         - name: extra-addons-persistence-volume
           mountPath: /mnt/extra-addons
       volumes:
-      - name:
+      - name: persistence-volume
         hostPath:
-          path:      
-        resources: {}
-status: {}
+          path: /data_docker/config
+      - name: lib-persistence-volume
+        persistentVolumeClaim:
+          claimName: odoo-pvc
+      - name: extra-addons-persistence-volume
+        hostPath:
+          path: /data_docker/addons           

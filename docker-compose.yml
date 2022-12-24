@@ -38,19 +38,6 @@ services:
         image: 'gharbirima/icwebapp:v1'
         networks:
             - ic_network
-    postgres:
-        environment:
-            - POSTGRES_USER=odoo_user
-            - POSTGRES_PASSWORD=odoo_password
-            - POSTGRES_DB=postgres
-        networks:
-            - ic_network
-        volumes:
-            - 'pgdata:/var/lib/postgresql/data'
-        container_name: postgres
-        image: 'postgres:10'
-        ports:
-            - '5432:5432'
     odoo:
         depends_on:
             - postgres

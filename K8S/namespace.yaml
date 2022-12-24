@@ -2,7 +2,7 @@ apiVersion: v1
 kind: Namespace
 metadata:
   creationTimestamp: null
-  name: ic-webapp
+  name: icgroup
   labels:
     env: prod 
 spec: {}
