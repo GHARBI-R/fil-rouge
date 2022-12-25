@@ -22,6 +22,12 @@ spec:
       containers:
       - image: odoo:13.0
         name: odoo
+        securityContext:
+          runAsUser: 0
+        lifecycle:
+          postStart:
+            exec:
+              command: ["/bin/sh", "-c", "chmod -R 777 /etc/odoo"]
         env:
         - name: USER
           value: odoo_user
