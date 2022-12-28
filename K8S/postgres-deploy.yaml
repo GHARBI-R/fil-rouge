@@ -3,20 +3,20 @@ kind: Deployment
 metadata:
   creationTimestamp: null
   labels:
-    app: dep-postgres
-  name: dep-postgres
+    app: postgres
+  name: postgres
   namespace: icgroup
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: dep-postgres
+      app: postgres
   strategy: {}
   template:
     metadata:
       creationTimestamp: null
       labels:
-        app: dep-postgres
+        app: postgres
     spec:
       containers:
       - image: postgres:10
