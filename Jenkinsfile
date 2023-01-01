@@ -1,6 +1,3 @@
-@Library('chocoapp-slack-share-library')_
-
-
 pipeline {
     environment {
         IMAGE_NAME = "icwebapp"
@@ -83,11 +80,5 @@ pipeline {
         }
 
     }
-  post {
-     always {
-       script {
-         slackNotifier currentBuild.result
-     }
-    }
-  }
+ 
 }
